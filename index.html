@@ -48,9 +48,10 @@ html,body{height:100%;margin:0;overflow:hidden;background:var(--black);color:var
 .tally{display:flex;gap:8px;flex-wrap:wrap}
 .chip{display:flex;flex-direction:column;gap:1px;background:var(--panel);border:1px solid var(--line);
   border-radius:11px;padding:7px 13px;min-width:78px;backdrop-filter:blur(6px)}
-.chip b{font-family:var(--mono);font-size:1.15rem;font-variant-numeric:tabular-nums;line-height:1}
+.chip b{font-family:var(--mono);font-size:.98rem;font-variant-numeric:tabular-nums;line-height:1}
 .chip span{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.chip.clay b{color:var(--steel)}.chip.stick b{color:#FF8A1F}.chip.tat b{color:var(--blue)}.chip.slink b{color:var(--teal)}
+.chip.slink b{color:#C9D6E4}.chip.stick b{color:#FF8A1F}.chip.clay b{color:#9B7EDE}.chip.tat b{color:var(--teal)}
+.chip.out{border-color:#FF6B6B}.chip.out b{color:#FF6B6B}
 .chip.cash b{color:#fff}
 @media (max-width:640px){#bottom{gap:10px;padding:12px 14px}.chip{min-width:62px;padding:6px 9px}.chip b{font-size:1rem}}
 .ghost{background:none;border:1px solid var(--line);color:var(--muted);border-radius:10px;
@@ -83,14 +84,14 @@ html,body{height:100%;margin:0;overflow:hidden;background:var(--black);color:var
 @keyframes pop{from{transform:scale(.55);opacity:0}to{transform:scale(1);opacity:1}}
 @keyframes up{from{transform:translateY(14px);opacity:0}to{transform:translateY(0);opacity:1}}
 #reveal .name{background-clip:text;-webkit-background-clip:text;color:transparent}
-#reveal.clay .name{background-image:linear-gradient(180deg,#E3EAF2,#6F7E90)}
-#reveal.clay .glow{background:radial-gradient(60% 50% at 50% 55%,rgba(125,139,158,.4),rgba(6,8,11,.94) 70%)}
+#reveal.slink .name{background-image:linear-gradient(180deg,#FFFFFF,#A9BCCF)}
+#reveal.slink .glow{background:radial-gradient(60% 50% at 50% 55%,rgba(201,214,228,.34),rgba(6,8,11,.94) 70%)}
 #reveal.stick .name{background-image:linear-gradient(180deg,#FFD39B,#E8731A)}
 #reveal.stick .glow{background:radial-gradient(62% 52% at 50% 55%,rgba(255,138,31,.42),rgba(6,8,11,.94) 70%)}
-#reveal.tat .name{background-image:linear-gradient(180deg,#8FD0FF,#0B63C4)}
-#reveal.tat .glow{background:radial-gradient(60% 50% at 50% 55%,rgba(30,143,255,.42),rgba(6,8,11,.94) 70%)}
-#reveal.slink .name{background-image:linear-gradient(180deg,#FFFFFF,#2BE0B7 60%,#12A88A)}
-#reveal.slink .glow{background:radial-gradient(70% 60% at 50% 55%,rgba(43,224,183,.5),rgba(6,8,11,.94) 72%)}
+#reveal.clay .name{background-image:linear-gradient(180deg,#D6C6FF,#6C4FB5)}
+#reveal.clay .glow{background:radial-gradient(60% 50% at 50% 55%,rgba(155,126,222,.4),rgba(6,8,11,.94) 70%)}
+#reveal.tat .name{background-image:linear-gradient(180deg,#FFFFFF,#2BE0B7 60%,#12A88A)}
+#reveal.tat .glow{background:radial-gradient(70% 60% at 50% 55%,rgba(43,224,183,.5),rgba(6,8,11,.94) 72%)}
 #flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:7}
 #flash.go{animation:fl .5s ease-out}
 @keyframes fl{0%{opacity:.85}100%{opacity:0}}
@@ -117,20 +118,20 @@ html,body{height:100%;margin:0;overflow:hidden;background:var(--black);color:var
 
   <div id="odds">
     <h3>Prize odds</h3>
-    <div class="orow"><i class="sw" style="background:#FF8A1F"></i><span class="nm">Halloween window sticker</span><span class="pc">44%</span></div>
-    <div class="orow"><i class="sw" style="background:#7D8B9E"></i><span class="nm">Tube of modeling clay</span><span class="pc">41%</span></div>
-    <div class="orow"><i class="sw" style="background:#1E8FFF"></i><span class="nm">Tattoo stickers</span><span class="pc">13%</span></div>
-    <div class="orow"><i class="sw" style="background:#2BE0B7"></i><span class="nm">Slinky</span><span class="pc">2.6%</span></div>
+    <div class="orow"><i class="sw" style="background:#FF8A1F"></i><span class="nm">Halloween window sticker</span><span class="pc">36%</span></div>
+    <div class="orow"><i class="sw" style="background:#C9D6E4"></i><span class="nm">Slinky</span><span class="pc">35%</span></div>
+    <div class="orow"><i class="sw" style="background:#9B7EDE"></i><span class="nm">Tube of modeling clay</span><span class="pc">20%</span></div>
+    <div class="orow"><i class="sw" style="background:#2BE0B7"></i><span class="nm">Tattoo stickers</span><span class="pc">8.5%</span></div>
     <div class="foot">Every player wins a prize.<br>No cash prizes are awarded.</div>
   </div>
 
   <div class="bar" id="bottom">
     <button id="drop" type="button">Drop</button>
     <div class="tally">
-      <div class="chip clay"><b id="t_clay">0</b><span>Clay</span></div>
       <div class="chip stick"><b id="t_stick">0</b><span>Sticker</span></div>
-      <div class="chip tat"><b id="t_tat">0</b><span>Tattoo</span></div>
       <div class="chip slink"><b id="t_slink">0</b><span>Slinky</span></div>
+      <div class="chip clay"><b id="t_clay">0</b><span>Clay</span></div>
+      <div class="chip tat"><b id="t_tat">0</b><span>Tattoo</span></div>
       <div class="chip cash"><b id="tCash">$0</b><span>Taken</span></div>
     </div>
     <div class="spacer"></div>
@@ -143,7 +144,7 @@ html,body{height:100%;margin:0;overflow:hidden;background:var(--black);color:var
   <div id="reveal">
     <div class="glow"></div>
     <div class="won">You won</div>
-    <div class="name" id="rName">Modeling Clay</div>
+    <div class="name" id="rName">Slinky</div>
     <div class="sub" id="rSub"></div>
     <div class="hint">tap anywhere to continue</div>
   </div>
@@ -166,15 +167,16 @@ const ROWS=[{y:8.5,xs:[4,10,16,22,28]},{y:13,xs:[7,13,19,25],w:1},{y:17.5,xs:[4,
             {y:22,xs:[7,13,19,25]},{y:26.5,xs:[10,16,22]},{y:31,xs:[13,19],w:1},{y:35.5,xs:[16]}];
 const FUN={top:44.5,bot:39.5,gap:3.5,out:6};
 const BOUNDS=[0,3.875,7.75,12.25,16,19.5,24,28,32];
-const TIERS=['clay','clay','tat','tat','slink','tat','stick','stick'];
-const TIER_HEX={clay:0x5B6B7E,stick:0xE8731A,tat:0x1E8FFF,slink:0x2BE0B7};
-const TIER_CSS={clay:'#7D8B9E',stick:'#FF8A1F',tat:'#1E8FFF',slink:'#2BE0B7'};
-const TIER_ORDER=['clay','stick','tat','slink'];
+const TIERS=['slink','clay','clay','tat','tat','tat','clay','stick'];
+const TIER_HEX={slink:0xB9C8D8,clay:0x7E63C6,tat:0x2BE0B7,stick:0xE8731A};
+const TIER_CSS={slink:'#C9D6E4',clay:'#9B7EDE',tat:'#2BE0B7',stick:'#FF8A1F'};
+const TIER_ORDER=['stick','slink','clay','tat'];
+const STOCK={stick:108,slink:100,clay:50,tat:20};
 const PRIZE={
-  clay :{name:'Modeling Clay', sub:'Hand over one tube of clay.',      short:'Clay'},
+  slink:{name:'Slinky',        sub:'Hand over one slinky.',                short:'Slinky'},
   stick:{name:'Window Sticker',sub:'Hand over one Halloween window sticker.',short:'Sticker'},
-  tat  :{name:'Tattoo Stickers',sub:'Hand over one sheet of tattoo stickers.',short:'Tattoo'},
-  slink:{name:'Slinky!',       sub:'The best prize on the board. About 1 drop in 38.',short:'Slinky'}};
+  clay :{name:'Modeling Clay', sub:'Hand over one tube of clay.',          short:'Clay'},
+  tat  :{name:'Tattoo Stickers',sub:'Top prize. Only 20 sheets all day.',  short:'Tattoo'}};
 const PRICE=3;
 
 /* ---------- physics ---------- */
@@ -230,10 +232,18 @@ onBounce=function(strength){
   const now=performance.now();if(now-lastTick<28)return;lastTick=now;
   blip(700+Math.random()*700,.045,'square',.02+strength*.045);
 };
+function sweep(f0,f1,dur,gain){
+  if(!soundOn)return;const a=ac();if(!a)return;
+  const t=a.currentTime,o=a.createOscillator(),g=a.createGain();
+  o.type='triangle';o.frequency.setValueAtTime(f0,t);
+  o.frequency.exponentialRampToValueAtTime(f1,t+dur);
+  g.gain.setValueAtTime(gain,t);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+  o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+dur+.02);
+}
 function winSound(tier){
   if(tier==='clay'){blip(200,.18,'sine',.1);blip(150,.22,'sine',.08,.05);}
   else if(tier==='stick'){blip(330,.16,'triangle',.1);blip(494,.2,'triangle',.09,.07);}
-  else if(tier==='tat'){[440,660,880].forEach((f,i)=>blip(f,.2,'triangle',.11,i*.08));}
+  else if(tier==='slink'){sweep(900,180,.55,.11);setTimeout(()=>sweep(700,200,.4,.07),260);}
   else{[523,659,784,1047,1319].forEach((f,i)=>blip(f,.35,'triangle',.12,i*.085));
        setTimeout(()=>[1568,2093].forEach((f,i)=>blip(f,.5,'sine',.07,i*.12)),380);}
 }
@@ -242,16 +252,16 @@ function winSound(tier){
 const fx=document.getElementById('fx'),fxc=fx.getContext('2d');
 let parts=[];
 function burst(tier){
-  const n=tier==='slink'?280:(tier==='tat'?130:50);
-  const cols=tier==='slink'?['#2BE0B7','#FFFFFF','#1E8FFF','#A9FFE8']
-           :tier==='tat'?['#1E8FFF','#8FD0FF','#FFFFFF']
-           :tier==='stick'?['#FF8A1F','#FFC46B','#E8731A']:['#7D8B9E','#C9D6E4','#4E5C6E'];
+  const n=tier==='tat'?280:(tier==='slink'?110:(tier==='clay'?80:60));
+  const cols=tier==='tat'?['#2BE0B7','#FFFFFF','#A9FFE8','#1E8FFF']
+           :tier==='slink'?['#C9D6E4','#FFFFFF','#8FA3B8']
+           :tier==='clay'?['#9B7EDE','#C7B2FF','#6C4FB5']:['#FF8A1F','#FFC46B','#E8731A'];
   const cx=fx.width/2,cy=fx.height*0.52;
   for(let i=0;i<n;i++){
-    const a=Math.random()*Math.PI*2,sp=(tier==='slink'?9:6)*(0.35+Math.random());
+    const a=Math.random()*Math.PI*2,sp=(tier==='tat'?9:6)*(0.35+Math.random());
     parts.push({x:cx,y:cy,vx:Math.cos(a)*sp*(1+Math.random()),vy:Math.sin(a)*sp-4-Math.random()*5,
       w:4+Math.random()*7,h:5+Math.random()*10,rot:Math.random()*6.3,vr:(Math.random()-.5)*.35,
-      c:cols[(Math.random()*cols.length)|0],life:1,star:tier==='slink'&&Math.random()<.3});
+      c:cols[(Math.random()*cols.length)|0],life:1,star:tier==='tat'&&Math.random()<.3});
   }
 }
 function drawFx(){
@@ -271,13 +281,15 @@ function drawFx(){
 }
 
 /* ---------- tally ---------- */
-const T={clay:0,stick:0,tat:0,slink:0,plays:0};
+const T={slink:0,stick:0,clay:0,tat:0,plays:0};
 let history=[];
-function load(){try{const s=JSON.parse(localStorage.getItem('mm_tally_v2')||'null');
+function load(){try{const s=JSON.parse(localStorage.getItem('mm_tally_v3')||'null');
   if(s){TIER_ORDER.forEach(k=>T[k]=s[k]|0);T.plays=s.plays|0;history=s.history||[];}}catch(e){}}
-function save(){try{localStorage.setItem('mm_tally_v2',JSON.stringify({...T,history:history.slice(-400)}));}catch(e){}}
+function save(){try{localStorage.setItem('mm_tally_v3',JSON.stringify({...T,history:history.slice(-400)}));}catch(e){}}
 function paint(){
-  TIER_ORDER.forEach(k=>{const el=document.getElementById('t_'+k);if(el)el.textContent=T[k];});
+  TIER_ORDER.forEach(k=>{const el=document.getElementById('t_'+k);if(!el)return;
+    el.textContent=T[k]+'/'+STOCK[k];
+    el.parentNode.classList.toggle('out',T[k]>=STOCK[k]);});
   document.getElementById('tCash').textContent='$'+(T.plays*PRICE);
 }
 load();paint();
@@ -341,11 +353,11 @@ function build3D(){
   }
   const lipC=document.createElement('canvas');lipC.width=1600;lipC.height=150;
   const g=lipC.getContext('2d');g.fillStyle='#06080B';g.fillRect(0,0,1600,150);
-  const LAB=['CLAY','CLAY','TATTOO','TATTOO','★ SLINKY','TATTOO','STICKER','STICKER'];
+  const LAB=['SLINKY','CLAY','CLAY','TATTOO','★ TATTOO','TATTOO','CLAY','STICKER'];
   for(let i=0;i<8;i++){const k=1600/W;
     g.fillStyle=TIER_CSS[TIERS[i]];g.fillRect(BOUNDS[i]*k+2,0,(BOUNDS[i+1]-BOUNDS[i])*k-4,150);
     g.fillStyle='#06080B';
-    g.font='700 '+(TIERS[i]==='slink'?42:34)+'px "Saira Condensed",Arial Narrow,sans-serif';
+    g.font='700 '+(TIERS[i]==='tat'?36:34)+'px "Saira Condensed",Arial Narrow,sans-serif';
     g.textAlign='center';g.textBaseline='middle';g.fillText(LAB[i],(BOUNDS[i]+BOUNDS[i+1])/2*k,78);}
   const lipTex=new THREE.CanvasTexture(lipC);lipTex.encoding=THREE.sRGBEncoding;
   const lip=box(W,3,.25,edgeM);lip.position.set(0,1.5,WALL);bg.add(lip);
@@ -412,9 +424,9 @@ function showReveal(tier){
   document.getElementById('rName').textContent=p.name;
   document.getElementById('rSub').textContent=p.sub;
   revealOpen=true;
-  if(tier==='slink'){flash.classList.remove('go');void flash.offsetWidth;flash.classList.add('go');}
+  if(tier==='tat'){flash.classList.remove('go');void flash.offsetWidth;flash.classList.add('go');}
   burst(tier);winSound(tier);
-  if(tier==='slink'){setTimeout(()=>burst('slink'),520);setTimeout(()=>burst('slink'),980);}
+  if(tier==='tat'){setTimeout(()=>burst('tat'),520);setTimeout(()=>burst('tat'),980);}
 }
 function closeReveal(){
   if(!revealOpen)return;
