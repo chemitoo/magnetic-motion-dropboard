@@ -20,8 +20,8 @@
 html{color-scheme:dark}
 html,body{height:100%;margin:0;overflow:hidden;background:var(--black);color:var(--ink);font-family:var(--body)}
 #stage{position:fixed;inset:0}
-#scene{position:absolute;inset:0;display:block}
-#fx{position:absolute;inset:0;pointer-events:none}
+#scene{position:absolute;inset:0;display:block;width:100%;height:100%}
+#fx{position:absolute;inset:0;pointer-events:none;width:100%;height:100%}
 .bar{position:absolute;left:0;right:0;display:flex;align-items:center;gap:16px;padding:14px 22px;z-index:5}
 #top{top:0;padding-top:calc(14px + env(safe-area-inset-top,0px));
   background:linear-gradient(180deg,rgba(6,8,11,.92),rgba(6,8,11,0))}
@@ -375,7 +375,7 @@ function fit(){
   const w=innerWidth,h=innerHeight;
   fx.width=w;fx.height=h;
   if(!ready)return;
-  renderer.setSize(w,h,false);
+  renderer.setSize(w,h);
   camera.aspect=w/h;
   const box=new THREE.Box3().setFromObject(window._bg);
   const size=box.getSize(new THREE.Vector3()),c=box.getCenter(new THREE.Vector3());
